@@ -12,9 +12,9 @@ module.exports = {
       userProfileId: {
         allowNull: false,
         type: Sequelize.INTEGER,
-        references:{
+        references: {
           model: "UserProfiles",
-          key:"id"
+          key: "id"
         }
       },
       username: {
