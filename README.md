@@ -1,33 +1,37 @@
 # PH1-PP-Ecommerce
 
-## Register Page :
-1. Input Full name
-2. Input Username
-3. Input Password
-4. Input Address
-5. Input Email address
-6. Input Role User (radio button seller / buyer)
-7. Feature send email notification
+## Register Page : (Route#1)
+1. Input full name
+2. Input username
+3. Input password
+4. Input address
+5. Input email address
+6. Input role user (radio button seller / buyer)
+7. Button cancel
+8. Feature send email notification
 
-## Login Page :
-1. Input Username
-2. Input Password
-3. Link to Register
+## Login Page : (Route#2)
+1. Input username
+2. Input password
+3. Button cancel
+4. Link to register (Route#3)
 
-## Seller Page :
-1. List product in card, link to Detail Product
-2. Feature Create product
-3. Feature Update product: description, stock, price
-4. Feature Delete product
+## Seller Page : (Route#4)
+1. List product in card, link to detail product (Route#5 perlu??)
+2. Feature create product (Route#6)
+3. Feature update product: description, stock, price (Route#6)
+4. Feature delete product (Route#7)
+5. Button back to home page (Route#8)
 
-## Home Page :
-1. Feature Login
-2. Feature search by name
-3. Filter product by category (back to Home Page)
-4. ~~Link to Cart~~
-5. ~~Link to Wishlist~~
-6. Link to History Pembelian
-7. Products (Card :name,price,imageUrl,quantity_purchased,stock; ~~Add to Wishlist, Add to Cart~~) sort by stock asc
+## Home Page : (Route#8)
+1. Feature logout (Route#8)
+2. Feature login (Route#2)
+3. Feature search by name (Route#8)
+4. Filter product by category (back to Home Page) (Route#8)
+5. ~~Link to Cart~~
+6. ~~Link to Wishlist~~
+7. Link to History Pembelian (Route#9)
+8. Products (Card :name,price,imageUrl,quantity_purchased,stock; ~~Add to Wishlist, Add to Cart~~) sort by stock asc, show only products with stock > 0
 
 ~~## Wishlist Page :~~
 ~~1. Products (name,price,imgUrl,quantity_purchased,stock, Add to Cart), if last/empty stock, show last/empty stock~~
@@ -39,14 +43,19 @@
         ~~2. Input quantity WTB. When 0, remove from cart~~
 ~~)~~
 ~~2. Total price~~
-~~3. Link to buy (insert into BuyingHistory from cart, clear products at cart)~~
+~~3. Link to buy (insert into PurchaseHistory from cart, clear products at cart)~~
+
+## Purchase History Page: (Route#9)
+1. List Purchase History in card, all (product name, qty, price) and total price
+2. Button back to home page (Route#8)
+
 
 
 ## Model
 - Product: name,price,stock,description,category,imageUrl
 - Category: name
 - User: userProfileId,username,password,role
-- BuyingHistory: productId,userId,quantity
+- PurchaseHistory: productId,userId,quantity
 - UserProfile: fullName,address,email
 ~~- Wishlist~~
 ~~- Cart~~
