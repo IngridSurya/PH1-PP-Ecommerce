@@ -77,7 +77,8 @@ module.exports = (sequelize, DataTypes) => {
         }
       },
       type: DataTypes.INTEGER
-    }
+    },
+    imgUrl: DataTypes.STRING
   }, {
     sequelize,
     modelName: 'Product',
