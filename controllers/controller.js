@@ -8,7 +8,8 @@ class Controller {
             let categories = await Category.findAll();
             let products = await Product.getDetails(categoryId, name);
             let filterByCategory = await categories.find(el => el.id === +categoryId)
-            res.render('homePage', { title: 'Home Page', categories, products, filterByCategory, formatPrice });
+            let session = req.session;
+            res.render('homePage', { title: 'Home Page', categories, products, filterByCategory, formatPrice, session });
 
         } catch (error) {
             console.log(error);
@@ -29,7 +30,7 @@ class Controller {
                     req.session.cart.push({ id: +id, purchasedQty: +purchasedQty });
                 }
             } else {
-                throw new Error('quantity need to be more than 0.')
+                throw new Error('quantity need to be more than 0.');
             }
             res.redirect('/');
         } catch (error) {
