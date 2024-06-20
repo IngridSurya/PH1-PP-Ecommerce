@@ -4,7 +4,8 @@ const bcryptjs = require ("bcryptjs");
 class UserController {
     static async showRegisterUser(req, res) {
         try {
-            res.render('registerUserForm', { title: "Create Account" });
+            const { error } = req.query;
+            res.render('registerUserForm', { title: "Create Account", error });
         } catch (error) {
             res.send(error.message);
         }
@@ -12,10 +13,15 @@ class UserController {
     static async postRegisterUser(req,res) {
         try {
             let {username, password, role} = req.body;
-            let user = await User.create({username, password, role});
+            let user = await User.create({ username, password, role });
             res.redirect(`/register/profile/?userId=${user.id}`);
         } catch (error) {
-            res.send(error.message);
+            if (error.name === 'SequelizeValidationError') {
+                let err = error.errors.map(el => el.message);
+                res.redirect(`/register?error=${err}`)
+            } else {
+                res.send(error.message);
+            }
         }
     }
     static async showRegisterProfile (req, res) {
@@ -53,6 +59,7 @@ class UserController {
 
                 if (isValidPassword) {
                     req.session.userId = User.id;
+                    req.session.username = User.username;
                     res.redirect ('/');
                 } else {
                     const error = 'Invalid Username/Password';
@@ -60,7 +67,7 @@ class UserController {
                 }
             } else {
                 const error = "Invalid username/password";
-                return res.redirect(`/login?error${error}`);
+                return res.redirect(`/login?error=${error}`);
             }
         }).catch (error => res.send (error.message));
     }

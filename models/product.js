@@ -37,6 +37,9 @@ module.exports = (sequelize, DataTypes) => {
         throw error;
       }
     }
+    totalPrice(qty) {
+      return this.price*qty;
+    }
   }
   Product.init({
     name: {

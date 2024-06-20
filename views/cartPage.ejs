@@ -1,0 +1,46 @@
+    <!-- header -->
+    <%- include('_header') %>
+
+    <!-- navbar -->
+    <%- include('_navbar') %>
+
+    <% if (error) { %>
+        <p class="text-danger"><%= error %></p>
+    <% } %>
+
+    <!-- card -->
+    <% function removeProduct(i) { %>
+        products.splice(i,1);
+        console.log('asd')
+    <% } %>
+
+    <a href="/" class="btn btn-outline-primary">Back to Home Page</a>
+    <% if (products.length > 0) { %>
+    <div class="d-flex flex-row flex-wrap">
+        <form action="/purchase" method="post" class="d-flex flex-fill">
+            <% products.forEach((el, index) => { %>
+            <div class="card" style="width: 18rem; min-width: 300px;">
+                <img src="<%= el.product.imgUrl %>" class="card-img-top" alt="<%= el.product.name %>">
+                <div class="card-body">
+                    <input type="hidden" name="id" value="<%= el.product.id %>">
+                    <h5 class="card-title"><%= el.product.name %></h5>
+                    <h5 class="card-title"><%= el.product.Category.name %></h5>
+                    <p class="card-text"><%= el.product.description %></p>
+                    <p class="card-text">Price: <%= formatPrice(el.product.price) %></p>
+                    <p class="card-text">Stock: <%= el.product.stock %></p>
+                    <div class="d-flex align-items-center">
+                        <div class="card-text">Qty:</div>
+                        <input type="number" name="purchasedQty" class="form-control" style="margin: 0 5px;" value="<%= el.purchasedQty %>" min="1">
+                        <div class="card-text">pcs</div>
+                    </div>
+                    <p class="card-text" style="margin: 30px;">Total price: <%= formatPrice(el.product.totalPrice(el.purchasedQty)) %></p>
+                </div>
+            </div>
+            <% }) %>
+            <button class="btn btn-outline-success" type="submit">Buy</button>
+        </form>
+    </div>
+    <% } %>
+    
+    <!-- footer -->
+    <%- include('_footer') %>

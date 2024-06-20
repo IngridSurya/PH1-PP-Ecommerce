@@ -52,6 +52,18 @@ module.exports = (sequelize, DataTypes) => {
       },
       type: DataTypes.INTEGER
     },
+    purchaseHistoryNo: {
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: "quantity is required."
+        },
+        notEmpty: {
+          msg: "quantity is required."
+        }
+      },
+      type: DataTypes.INTEGER
+    }
   }, {
     sequelize,
     modelName: 'PurchaseHistory',

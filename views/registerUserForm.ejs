@@ -5,6 +5,11 @@
         <div class="continer" style="text-align: center;">
             <h2>Create New Acccount !</h2>
         </div>
+        <% if (error) { %>
+            <% error.split(',').map(el => { %>
+                <div class="text-danger"><%= el %></div>
+            <% }) %>
+        <% } %>
         <div class="mb-3">
             <label for="inputUsername">Username:</label>
             <input name="username" type="text" class="form-control" id="inputName" aria-describedby="inputUsername" placeholder="Input your Username">
