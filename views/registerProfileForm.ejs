@@ -1,0 +1,31 @@
+<%- include('_header') %>
+
+<form action="/register/profile/?userId=<%= userId %>" method="post">
+    <div class="container" style="padding: 150px;">
+        <div class="continer" style="text-align: center;">
+            <h2>Add your Profile !</h2>
+        </div>
+        <div class="mb-3">
+            <label for="inputName">Name:</label>
+            <input name="fullName" type="text" class="form-control" id="inputName" aria-describedby="inputName" placeholder="Input your Name">
+        </div>
+        <div class="mb3">
+            <label for="floatingTextarea">Address: </label>
+            <div class="form-floating">
+                <input textarea name="address" class="form-control" placeholder="Input your Address" id="floatingTextarea"></textarea>
+            </div>
+        </div>
+        <div class="mb-3">
+            <label for="inputEmail">Email:</label>
+            <input name="email" type="text" class="form-control" id="inputName" aria-describedby="inputEmail" placeholder="Input your Email">
+        </div>
+        <div class="container" style="text-align: center;">
+            <button type="submit" class="btn btn-primary">Add Profile</button>
+        </div>
+    </div>
+</form>
+
+
+
+
+<%- include('_footer') %>

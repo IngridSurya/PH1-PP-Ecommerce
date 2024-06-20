@@ -4,6 +4,7 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     let data = {
+      userId: 1,
       fullName: 'admin',
       address: 'hacktiv8',
       email: '',

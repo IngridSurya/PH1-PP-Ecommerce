@@ -1,0 +1,38 @@
+<%- include('_header') %>
+
+<form action="/register" method="post">
+    <div class="container" style="padding: 150px;">
+        <div class="continer" style="text-align: center;">
+            <h2>Create New Acccount !</h2>
+        </div>
+        <div class="mb-3">
+            <label for="inputUsername">Username:</label>
+            <input name="username" type="text" class="form-control" id="inputName" aria-describedby="inputUsername" placeholder="Input your Username">
+        </div>
+        <div class="mb-3">
+            <label for="InputPassword1" class="form-label">Password:</label>
+            <input name="password" type="password" class="form-control" id="InputPassword1" placeholder="New Password">
+        </div>
+        <div class="mb-3">
+            <label for="inputUsername">Role:</label>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="flexRadioDefault1"  value="Buyer">
+                <label class="form-check-label" for="flexRadioDefault1">
+                  Buyer
+                </label>
+            </div>
+            <div class="form-check">
+                <input class="form-check-input" type="radio" name="role" id="flexRadioDefault2" value="Seller">
+                <label class="form-check-label" for="flexRadioDefault2">
+                  Seller
+                </label>
+            </div>
+        </div>
+        <div class="container" style="text-align: center;">
+            <button type="submit" class="btn btn-primary">Create Account</button>
+        </div>
+    </div>
+</form>
+
+
+<%- include('_footer') %>
