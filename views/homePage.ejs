@@ -15,7 +15,7 @@
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= filterByCategory?filterByCategory.name:'Categories' %></a>
+                    <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false"><%= filteredByCategory?filteredByCategory.name:'Categories' %></a>
                     <ul class="dropdown-menu">
                         <li><a class="dropdown-item" href="/">All</a></li>
                         <% categories.forEach(el => { %>
@@ -25,8 +25,8 @@
                 </li>
                 <li>
                     <form class="d-flex" role="search">
-                        <% if (filterByCategory) { %>
-                            <input type="hidden" name="categoryId" value="<%= filterByCategory.id %>" />
+                        <% if (filteredByCategory) { %>
+                            <input type="hidden" name="categoryId" value="<%= filteredByCategory.id %>" />
                         <% } %>
                         <input class="form-control me-2" type="search" placeholder="Insert product name..." aria-label="Search" name="name">
                         <button class="btn btn-outline-success" type="submit">Search</button>
@@ -56,7 +56,7 @@
                 <input type="hidden" name="id" value="<%= el.id %>">
                 <div class="d-flex align-items-center">
                     <div class="card-text">Qty:</div>
-                    <input type="number" name="purchasedQty" class="form-control" style="margin: 0 5px;" value="0" min="1">
+                    <input type="number" name="purchasedQty" class="form-control" style="margin: 0 5px;" value="1" min="1">
                     <div class="card-text">pcs</div>
                 </div>
                 <button type="submit" class="btn btn-primary">Add to Cart</button>

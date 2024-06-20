@@ -8,6 +8,7 @@ router.get('/', Controller.showHomePage);
 router.post('/', Controller.addToCart);
 
 router.get('/cart', Controller.showCartPage);
+router.post('/purchase', Controller.purchase)
 
 router.get('/register', UserController.showRegisterUser);
 router.post('/register', UserController.postRegisterUser);
