@@ -26,8 +26,8 @@
 ## Home Page : (Route#8)
 1. Feature logout (Route#8)
 2. Feature login (Route#2)
-3. Feature search by name (Route#8)
-4. Filter product by category (back to Home Page) (Route#8)
+3. Feature search by name (Route#8) ==done==
+4. Filter product by category (back to Home Page) (Route#8) ==done==
 5. ~~Link to Cart~~
 6. ~~Link to Wishlist~~
 7. Link to History Pembelian (Route#9)
