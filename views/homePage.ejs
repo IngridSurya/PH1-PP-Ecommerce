@@ -32,6 +32,9 @@
                         <button class="btn btn-outline-success" type="submit">Search</button>
                     </form>
                 </li>
+                <li>
+                    <a href="/cart" class="btn btn-outline-secondary">Go to Cart</a>
+                </li>
             </ul>
           </div>
         </div>
@@ -46,10 +49,18 @@
             <h5 class="card-title"><%= el.name %></h5>
             <h5 class="card-title"><%= el.Category.name %></h5>
             <p class="card-text"><%= el.description %></p>
-            <p class="card-text"><%= el.price %></p>
-            <p class="card-text">qty purchase</p>
+            <p class="card-text"><%= formatPrice(el.price) %></p>
+            <p class="card-text">total qty purchased</p>
             <p class="card-text"><%= el.stock %></p>
-            <a href="#" class="btn btn-primary">Add to Cart</a>
+            <form action="/" method="post" class="d-flex flex-column flex-fill">
+                <input type="hidden" name="id" value="<%= el.id %>">
+                <div class="d-flex align-items-center">
+                    <div class="card-text">Qty:</div>
+                    <input type="number" name="purchasedQty" class="form-control" style="margin: 0 5px;" value="0" min="1">
+                    <div class="card-text">pcs</div>
+                </div>
+                <button type="submit" class="btn btn-primary">Add to Cart</button>
+            </form>
             </div>
         </div>
     <% }) %>
