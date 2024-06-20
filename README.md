@@ -30,7 +30,7 @@
 4. Filter product by category (back to Home Page) (Route#8) ==done==
 5. ~~Link to Cart~~
 6. ~~Link to Wishlist~~
-7. Link to History Pembelian (Route#9)
+7. Link to user profile (Route#9)
 8. Products (Card :name,price,imageUrl,quantity_purchased,stock; ~~Add to Wishlist, Add to Cart~~) sort by stock asc, show only products with stock > 0
 
 ~~## Wishlist Page :~~
@@ -45,9 +45,10 @@
 ~~2. Total price~~
 ~~3. Link to buy (insert into PurchaseHistory from cart, clear products at cart)~~
 
-## Purchase History Page: (Route#9)
-1. List Purchase History in card, all (product name, qty, price) and total price
-2. Button back to home page (Route#8)
+## User Profile Page: (Route#9)
+1. User profile (username, password, role, full name, address, email)
+2. List Purchase History in card, all (product name, qty, price) and total price
+3. Button back to home page (Route#8)
 
 
 

@@ -4,6 +4,9 @@ const Controller = require('../controllers/controller');
 const UserController = require("../controllers/UserController")
 
 router.get('/', Controller.showHomePage);
+router.post('/', Controller.addToCart);
+
+router.get('/cart', Controller.showCartPage);
 
 router.get('/register', UserController.showRegisterUser);
 router.post('/register', UserController.postRegisterUser);

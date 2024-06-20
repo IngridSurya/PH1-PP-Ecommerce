@@ -5,14 +5,14 @@
             {
             "item_name": "Master Sword",
             "description": "A legendary sword that seals the darkness.",
-            "price": 1000,
+            "price": 100000,
             "stock": 5,
             "image_url": "https://example.com/master_sword.jpg"
             },
             {
             "item_name": "Hylian Shield",
             "description": "A shield passed down through the Hylian royal family.",
-            "price": 500,
+            "price": 50000,
             "stock": 10,
             "image_url": "https://example.com/hylian_shield.jpg"
             }
@@ -24,14 +24,14 @@
             {
             "item_name": "Power Moon",
             "description": "Collectible item used to power up the Odyssey.",
-            "price": 50,
+            "price": 5000,
             "stock": 100,
             "image_url": "https://example.com/power_moon.jpg"
             },
             {
             "item_name": "Cappy",
             "description": "Mario's sentient hat companion.",
-            "price": 200,
+            "price": 20000,
             "stock": 20,
             "image_url": "https://example.com/cappy.jpg"
             }
@@ -43,14 +43,14 @@
             {
             "item_name": "Revolver",
             "description": "A reliable sidearm for any cowboy.",
-            "price": 300,
+            "price": 30000,
             "stock": 15,
             "image_url": "https://example.com/revolver.jpg"
             },
             {
             "item_name": "Horse",
             "description": "Your trusty steed.",
-            "price": 1500,
+            "price": 150000,
             "stock": 8,
             "image_url": "https://example.com/horse.jpg"
             }
@@ -62,14 +62,14 @@
             {
             "item_name": "Silver Sword",
             "description": "Effective against monsters.",
-            "price": 700,
+            "price": 70000,
             "stock": 12,
             "image_url": "https://example.com/silver_sword.jpg"
             },
             {
             "item_name": "Gwent Card",
             "description": "A card for the Gwent mini-game.",
-            "price": 20,
+            "price": 2000,
             "stock": 200,
             "image_url": "https://example.com/gwent_card.jpg"
             }
@@ -81,14 +81,14 @@
             {
             "item_name": "Diamond",
             "description": "A precious gem for crafting powerful tools and armor.",
-            "price": 300,
+            "price": 30000,
             "stock": 50,
             "image_url": "https://example.com/diamond.jpg"
             },
             {
             "item_name": "Pickaxe",
             "description": "Tool used to mine blocks.",
-            "price": 100,
+            "price": 10000,
             "stock": 30,
             "image_url": "https://example.com/pickaxe.jpg"
             }
@@ -100,14 +100,14 @@
             {
             "item_name": "Assault Rifle",
             "description": "A versatile weapon for combat.",
-            "price": 500,
+            "price": 50000,
             "stock": 25,
             "image_url": "https://example.com/assault_rifle.jpg"
             },
             {
             "item_name": "Shield Potion",
             "description": "Restores shield points.",
-            "price": 50,
+            "price": 5000,
             "stock": 100,
             "image_url": "https://example.com/shield_potion.jpg"
             }
@@ -119,14 +119,14 @@
             {
             "item_name": "Crewmate",
             "description": "A standard crewmember.",
-            "price": 10,
+            "price": 1000,
             "stock": 1000,
             "image_url": "https://example.com/crewmate.jpg"
             },
             {
             "item_name": "Impostor",
             "description": "A disguised crewmember.",
-            "price": 10,
+            "price": 1000,
             "stock": 500,
             "image_url": "https://example.com/impostor.jpg"
             }
@@ -138,14 +138,14 @@
             {
             "item_name": "Nook Miles",
             "description": "Points for purchasing special items.",
-            "price": 100,
+            "price": 10000,
             "stock": 1000,
             "image_url": "https://example.com/nook_miles.jpg"
             },
             {
             "item_name": "Fishing Rod",
             "description": "Tool used for fishing.",
-            "price": 50,
+            "price": 5000,
             "stock": 50,
             "image_url": "https://example.com/fishing_rod.jpg"
             }
@@ -157,14 +157,14 @@
             {
             "item_name": "Loadout Drop",
             "description": "Drops a custom loadout.",
-            "price": 1000,
+            "price": 100000,
             "stock": 10,
             "image_url": "https://example.com/loadout_drop.jpg"
             },
             {
             "item_name": "Armor Plate",
             "description": "Restores armor points.",
-            "price": 200,
+            "price": 20000,
             "stock": 30,
             "image_url": "https://example.com/armor_plate.jpg"
             }
@@ -176,14 +176,14 @@
             {
             "item_name": "Cyberware",
             "description": "Implants to enhance abilities.",
-            "price": 1500,
+            "price": 150000,
             "stock": 10,
             "image_url": "https://example.com/cyberware.jpg"
             },
             {
             "item_name": "Weapon",
             "description": "Various weapons for combat.",
-            "price": 800,
+            "price": 80000,
             "stock": 20,
             "image_url": "https://example.com/weapon.jpg"
             }
