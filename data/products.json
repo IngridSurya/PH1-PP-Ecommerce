@@ -1,6 +1,7 @@
 [
     {
         "name": "The Legend of Zelda: Breath of the Wild",
+        "game_website": "https://www.zelda.com/breath-of-the-wild/",
         "in_game_items": [
             {
             "item_name": "Master Sword",
@@ -20,6 +21,7 @@
     },
     {
         "name": "Super Mario Odyssey",
+        "game_website": "https://www.nintendo.com/games/detail/super-mario-odyssey-switch/",
         "in_game_items": [
             {
             "item_name": "Power Moon",
@@ -39,6 +41,7 @@
     },
     {
         "name": "Red Dead Redemption 2",
+        "game_website": "https://www.rockstargames.com/reddeadredemption2/",
         "in_game_items": [
             {
             "item_name": "Revolver",
@@ -58,6 +61,7 @@
     },
     {
         "name": "The Witcher 3: Wild Hunt",
+        "game_website": "https://thewitcher.com/en/witcher3",
         "in_game_items": [
             {
             "item_name": "Silver Sword",
@@ -77,6 +81,7 @@
     },
     {
         "name": "Minecraft",
+        "game_website": "https://www.minecraft.net/",
         "in_game_items": [
             {
             "item_name": "Diamond",
@@ -96,6 +101,7 @@
     },
     {
         "name": "Fortnite",
+        "game_website": "https://www.epicgames.com/fortnite/en-US/home",
         "in_game_items": [
             {
             "item_name": "Assault Rifle",
@@ -115,6 +121,7 @@
     },
     {
         "name": "Among Us",
+        "game_website": "https://www.innersloth.com/gameAmongUs.php",
         "in_game_items": [
             {
             "item_name": "Crewmate",
@@ -134,6 +141,7 @@
     },
     {
         "name": "Animal Crossing: New Horizons",
+        "game_website": "https://www.animal-crossing.com/new-horizons/",
         "in_game_items": [
             {
             "item_name": "Nook Miles",
@@ -153,6 +161,7 @@
     },
     {
         "name": "Call of Duty: Warzone",
+        "game_website": "https://www.callofduty.com/warzone",
         "in_game_items": [
             {
             "item_name": "Loadout Drop",
@@ -172,6 +181,7 @@
     },
     {
         "name": "Cyberpunk 2077",
+        "game_website": "https://www.cyberpunk.net/",
         "in_game_items": [
             {
             "item_name": "Cyberware",
