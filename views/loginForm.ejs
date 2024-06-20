@@ -7,17 +7,20 @@
                 LOGIN
             </h2>
         </div>
-        <div class="mb-3">
-            <label for="inputUsername">Username:</label>
-            <input name="username" type="text" class="form-control" id="inputName" aria-describedby="inputUsername" placeholder="Your Username">
-        </div>
-        <div class="mb-3">
-            <label for="InputPassword1" class="form-label">Password:</label>
-            <input name="password" type="password" class="form-control" id="InputPassword1" placeholder="Your Password">
-        </div>
-        <div class="container" style="text-align: center;">
-            <button type="submit" class="btn btn-primary">Login!</button>
-        </div>
+        <% if (error) { %>
+            <p class="text-danger"><%= error %></p>
+        <%} %>
+            <div class="mb-3">
+                <label for="inputUsername">Username:</label>
+                <input name="username" type="text" class="form-control" id="inputName" aria-describedby="inputUsername" placeholder="Your Username">
+            </div>
+            <div class="mb-3">
+                <label for="InputPassword1" class="form-label">Password:</label>
+                <input name="password" type="password" class="form-control" id="InputPassword1" placeholder="Your Password">
+            </div>
+            <div class="container" style="text-align: center;">
+                <button type="submit" class="btn btn-primary">Login!</button>
+            </div>
     </div>
 </form>
 

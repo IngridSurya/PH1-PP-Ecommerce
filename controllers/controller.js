@@ -8,7 +8,8 @@ class Controller {
             let categories = await Category.findAll();
             let products = await Product.getDetails(categoryId, name);
             let filterByCategory = await categories.find(el => el.id === +categoryId)
-            res.render('homePage', { title: 'Home Page', categories, products, filterByCategory, formatPrice });
+            let session = req.session
+            res.render('homePage', { title: 'Home Page', categories, products, filterByCategory, formatPrice, session });
 
         } catch (error) {
             console.log(error);

@@ -42,7 +42,8 @@ class UserController {
     }
     static async showLoginForm(req, res) {
         try {
-            res.render ('loginForm',{ title: "Login Page" });
+            const { error } = req.query
+            res.render ('loginForm',{ error, title: "Login Page" });
 
         } catch (error) {
             res.send (error.message)
@@ -56,6 +57,7 @@ class UserController {
                 const isValidPassword = bcryptjs.compareSync(password,User.password);
 
                 if (isValidPassword) {
+                    req.session.userId = User.id
                     res.redirect ('/');
                 } else {
                     const error = 'Invalid Username/Password'
@@ -66,6 +68,15 @@ class UserController {
                 return res.redirect(`/login?error${error}`)
             }
         }).catch (error => res.send (error.message))
+    }
+    static logOutUser (req, res){
+        try {
+            req.session.destroy(function(error){
+                res.redirect('/')
+            })
+        } catch (error) {
+            res.send (error.message)
+        }
     }
 
 }
