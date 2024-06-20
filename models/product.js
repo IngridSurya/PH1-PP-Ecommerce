@@ -1,6 +1,6 @@
 'use strict';
 const {
-  Model
+  Model, Op
 } = require('sequelize');
 module.exports = (sequelize, DataTypes) => {
   class Product extends Model {
@@ -11,9 +11,31 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      Product.hasMany(models.BuyingHistory, { foreignKey: "productId" });
+      Product.hasMany(models.PurchaseHistory, { foreignKey: "productId" });
       Product.belongsTo(models.User, { foreignKey: "userId" });
       Product.belongsTo(models.Category, { foreignKey: "categoryId" });
+    }
+    static async getDetails(categoryId, name) {
+      try {
+        let options = {};
+        options.include = [
+          { model: sequelize.models.User },
+          { model: sequelize.models.Category }
+        ]
+        options.where = {};
+        options.where.stock = { [Op.gt]: 0 };
+        if (categoryId) {
+          options.where.categoryId = categoryId;
+        }
+        if (name) {
+          options.where.name = { [Op.iLike]: `%${name}%` };
+        }
+        options.order = [['stock','desc']];
+        let data = await Product.findAll(options);
+        return data;
+      } catch (error) {
+        throw error;
+      }
     }
   }
   Product.init({
