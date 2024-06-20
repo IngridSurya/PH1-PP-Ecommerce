@@ -10,12 +10,13 @@ class UserController {
             res.send(error.message);
         }
     }
-    static async postRegisterUser(req,res) {
+    static async postRegisterUser(req, res) {
         try {
-            let {username, password, role} = req.body;
+            let { username, password, role } = req.body;
             let user = await User.create({ username, password, role });
             res.redirect(`/register/profile/?userId=${user.id}`);
         } catch (error) {
+            console.log(error);
             if (error.name === 'SequelizeValidationError') {
                 let err = error.errors.map(el => el.message);
                 res.redirect(`/register?error=${err}`)
@@ -27,14 +28,23 @@ class UserController {
     static async showRegisterProfile (req, res) {
         try {
             const { userId } = req.query;
-            res.render('registerProfileForm', { userId,title:"Add User Profile" });
+            res.render('registerProfileForm', { userId, title: "Add User Profile" });
         } catch (error) {
             res.send(error.message);
         }
     }
     static async postRegisterProfile(req, res) {
         try {
+            
             const { userId } = req.query;
+            // upload(req, res, function(err) {
+            //     console.log('<<<<<<<router');
+            //     if (err) {
+            //         return res.send(err)
+            //     }
+            //     res.send('upload done');
+            // })
+            console.log('<<<<<<<<<<<sampe');
             let { fullName, address, email } = req.body;
             await UserProfile.create({ fullName, address, email, userId });
             res.redirect('/');
