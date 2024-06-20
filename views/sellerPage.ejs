@@ -1,0 +1,32 @@
+    <!-- header -->
+    <%- include('_header') %>
+
+    <!-- navbar -->
+    <%- include('_navbar') %>
+
+    <a href="/seller/add" class="btn btn-outline-secondary">Add New Product</a>
+
+    <!-- card -->
+    <div class="d-flex flex-row flex-wrap">
+        <% products.forEach(el => { %>
+            <div class="card" style="width: 18rem; min-width: 300px;">
+                <img src="<%= el.imgUrl %>" class="card-img-top" alt="<%= el.name %>">
+                <div class="card-body">
+                <h5 class="card-title"><%= el.name %></h5>
+                <h5 class="card-title"><%= el.Category.name %></h5>
+                <p class="card-text"><%= el.description %></p>
+                <p class="card-text"><%= formatPrice(el.price) %></p>
+                <p class="card-text">total qty purchased</p>
+                <p class="card-text"><%= el.stock %></p>
+                <form action="/" method="post" class="d-flex flex-column flex-fill">
+                    <input type="hidden" name="id" value="<%= el.id %>">
+                    <a href="/seller/edit/<%= el.id %>" class="btn btn-success">Edit</a>
+                    <a href="/seller/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
+                </form>
+                </div>
+            </div>
+        <% }) %>
+    </div>
+    
+    <!-- footer -->
+    <%- include('_footer') %>

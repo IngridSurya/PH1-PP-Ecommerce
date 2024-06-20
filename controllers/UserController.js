@@ -16,7 +16,6 @@ class UserController {
             let user = await User.create({ username, password, role });
             res.redirect(`/register/profile/?userId=${user.id}`);
         } catch (error) {
-            console.log(error);
             if (error.name === 'SequelizeValidationError') {
                 let err = error.errors.map(el => el.message);
                 res.redirect(`/register?error=${err}`)
@@ -35,16 +34,7 @@ class UserController {
     }
     static async postRegisterProfile(req, res) {
         try {
-            
             const { userId } = req.query;
-            // upload(req, res, function(err) {
-            //     console.log('<<<<<<<router');
-            //     if (err) {
-            //         return res.send(err)
-            //     }
-            //     res.send('upload done');
-            // })
-            console.log('<<<<<<<<<<<sampe');
             let { fullName, address, email } = req.body;
             await UserProfile.create({ fullName, address, email, userId });
             res.redirect('/');
@@ -69,6 +59,7 @@ class UserController {
 
                 if (isValidPassword) {
                     req.session.userId = User.id;
+                    req.session.role = User.role;
                     req.session.username = User.username;
                     res.redirect ('/');
                 } else {
