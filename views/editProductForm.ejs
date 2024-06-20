@@ -1,0 +1,33 @@
+    <!-- header -->
+    <%- include('_header') %>
+
+    <!-- navbar -->
+    <%- include('_navbar') %>
+
+    <% if (error) { %>
+        <p class="text-danger"><%= error %></p>
+    <% } %>
+
+    <form action="/seller/edit/<%= product.id %>" method="post">
+        <label for="name">Product Name:</label>
+        <input type="text" class="form-control" id="name" name="name" value="<%= product.name %>">
+        <label for="description">Description:</label>
+        <input type="text" class="form-control" id="description" name="description" value="<%= product.description %>">
+        <label for="price">Price:</label>
+        <input type="number" class="form-control" id="price" name="price" value="<%= product.price %>">
+        <label for="stock">Stock:</label>
+        <input type="number" class="form-control" id="stock" name="stock" value="<%= product.stock %>">
+        <label for="categoryId">Category:</label>
+        <select name="categoryId" id="categoryId" class="form-select">
+            <option selected disabled>Please choose category...</option>
+            <% categories.forEach(el => { %>
+            <option value="<%= el.id %>" <%= el.id===product.categoryId?'selected':'' %>><%= el.name %></option>
+            <% }) %>
+        </select>
+        <label for="imgUrl">ImgUrl:</label>
+        <input type="text" class="form-control" id="imgUrl" name="imgUrl" value="<%= product.name %>">
+        <button class="btn btn-outline-secondary">Submit</button>
+    </form>
+    
+    <!-- footer -->
+    <%- include('_footer') %>

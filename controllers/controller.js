@@ -101,6 +101,93 @@ class Controller {
             }
         }
     }
+    static async showSellerPage(req, res) {
+        try {
+            let session = req.session;
+            let options = {};
+            if (!session.userId) {
+                let err = new Error('Please login first.');
+                err.name = 'ValidateLogin'
+                throw err;
+            }
+            options.where = { userId: session.userId };
+            options.include = Category;
+            let products = await Product.findAll(options);
+            res.render('sellerPage', { title: 'Seller Page', products, session, formatPrice });
+        } catch (error) {
+            res.send(error.message);
+        }
+    }
+    static async showAddProductForm(req, res) {
+        try {
+            let session = req.session;
+            const { error } = req.query;
+            let categories = await Category.findAll();
+            res.render('addProductForm', { title: 'Add Product Form Page', categories, session, error });
+        } catch (error) {
+            res.send(error.message);
+        }
+    }
+    static async addNewProduct(req, res) {
+        try {
+            const { error } = req.query;
+            const { name, description, price, stock, categoryId, imgUrl } = req.body;
+            const { userId } = req.session;
+            await Product.create({name, description, price, userId, stock, categoryId, imgUrl});
+            res.redirect('/seller');
+        } catch (error) {
+            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
+                res.redirect(`/seller/add?error=${error.message}`);
+            } else {
+                res.send(error.message);
+            }
+        }
+    }
+    static async showEditProductForm(req, res) {
+        try {
+            let session = req.session;
+            const { error } = req.query;
+            const { id } = req.params;
+            let options = {};
+            options.include = Category;
+            let product = await Product.findByPk(id, options);
+            let categories = await Category.findAll();
+            // res.send(product)
+            res.render('editProductForm', { title: 'Edit Product Form Page', session, error, product, categories });
+        } catch (error) {
+            res.send(error.message);
+        }
+    }
+    static async editProduct(req, res) {
+        try {
+            const { id } = req.params;
+            const { name, description, price, stock, categoryId, imgUrl } = req.body;
+            // const { userId } = req.session;
+            await Product.update({ name, description, price, stock, categoryId, imgUrl }, { where: { id } });
+            res.redirect('/seller');
+        } catch (error) {
+            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
+                res.redirect(`/seller/add?error=${error.message}`);
+            } else {
+                res.send(error.message);
+            }
+        }
+    }
+    static async deleteProduct(req, res) {
+        try {
+            const { id } = req.params;
+            const { name, description, price, stock, categoryId, imgUrl } = req.body;
+            // const { userId } = req.session;
+            await Product.destroy({ where: { id } });
+            res.redirect('/seller');
+        } catch (error) {
+            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
+                res.redirect(`/seller/add?error=${error.message}`);
+            } else {
+                res.send(error.message);
+            }
+        }
+    }
 }
 
 module.exports = Controller;
