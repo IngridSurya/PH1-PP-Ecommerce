@@ -2,6 +2,7 @@
 const {
   Model
 } = require('sequelize');
+const bcrypt = require ('bcryptjs')
 module.exports = (sequelize, DataTypes) => {
   class User extends Model {
     /**
@@ -11,24 +12,12 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.belongsTo(models.UserProfile, { foreignKey: "userProfileId" });
+      User.hasOne(models.UserProfile, { foreignKey: "userId" });
       User.hasMany(models.PurchaseHistory, { foreignKey: "userId" });
       User.hasMany(models.Product, { foreignKey: "userId" });
     }
   }
   User.init({
-    userProfileId: {
-      allowNull: false,
-      validate: {
-        notNull: {
-          msg: `userProfileId is required.`
-        },
-        notEmpty: {
-          msg: `userProfileId is required.`
-        }
-      },
-      type: DataTypes.INTEGER,
-    },
     username: {
       allowNull: false,
       validate: {
@@ -68,6 +57,14 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'User',
+    hooks: {
+      beforeCreate(instance, opt){
+        let salt = bcrypt.genSaltSync(10);
+        let hash = bcrypt.hashSync(instance.password, salt);
+        
+        instance.password = hash;
+      }
+    }
   });
   return User;
 };

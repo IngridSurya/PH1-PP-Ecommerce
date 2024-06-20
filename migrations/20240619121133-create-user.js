@@ -9,14 +9,6 @@ module.exports = {
         primaryKey: true,
         type: Sequelize.INTEGER
       },
-      userProfileId: {
-        allowNull: false,
-        type: Sequelize.INTEGER,
-        references: {
-          model: "UserProfiles",
-          key: "id"
-        }
-      },
       username: {
         allowNull: false,
         type: Sequelize.STRING

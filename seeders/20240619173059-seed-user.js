@@ -4,7 +4,6 @@
 module.exports = {
   async up (queryInterface, Sequelize) {
     let data = {
-      userProfileId: 1,
       username: 'sa',
       password: 'sa',
       role: 'seller',

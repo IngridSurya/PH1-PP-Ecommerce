@@ -11,7 +11,7 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      UserProfile.hasOne(models.User, { foreignKey: "userProfileId" })
+      UserProfile.belongsTo(models.User, { foreignKey: "userId" })
     }
   }
   UserProfile.init({
@@ -28,7 +28,19 @@ module.exports = (sequelize, DataTypes) => {
       type: DataTypes.STRING,
     },
     address: DataTypes.STRING,
-    email: DataTypes.INTEGER
+    email: DataTypes.INTEGER,
+    userId: {
+      allowNull: false,
+      validate: {
+        notNull: {
+          msg: `userId is required.`
+        },
+        notEmpty: {
+          msg: `userId is required.`
+        }
+      },
+      type: DataTypes.INTEGER,
+    },
   }, {
     sequelize,
     modelName: 'UserProfile',
