@@ -5,6 +5,11 @@
         <div class="continer" style="text-align: center;">
             <h2>Add your Profile !</h2>
         </div>
+        <% if (error) { %>
+            <% error.split(',').map(el => { %>
+                <div class="text-danger"><%= el %></div>
+            <% }) %>
+        <% } %>
         <div class="mb-3">
             <label for="inputName">Name:</label>
             <input name="fullName" type="text" class="form-control" id="inputName" aria-describedby="inputName" placeholder="Input your Name">

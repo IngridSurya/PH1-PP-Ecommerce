@@ -26,20 +26,25 @@ class UserController {
     }
     static async showRegisterProfile (req, res) {
         try {
-            const { userId } = req.query;
-            res.render('registerProfileForm', { userId, title: "Add User Profile" });
+            const { userId, error } = req.query;
+            res.render('registerProfileForm', { userId, title: "Add User Profile", error });
         } catch (error) {
             res.send(error.message);
         }
     }
     static async postRegisterProfile(req, res) {
+        const { userId } = req.query;
         try {
-            const { userId } = req.query;
             let { fullName, address, email } = req.body;
             await UserProfile.create({ fullName, address, email, userId });
             res.redirect('/');
         } catch (error) {
-            res.send(error.message);
+            if (error.name === 'SequelizeValidationError') {
+                let err = error.errors.map(el => el.message);
+                res.redirect(`/register/profile?userId=${userId}&error=${err}`)
+            } else {
+                res.send(error.message);
+            }
         }
     }
     static async showLoginForm(req, res) {
