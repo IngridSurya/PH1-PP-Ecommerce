@@ -10,6 +10,7 @@ router.post('/', Controller.addToCart);
 router.use('/seller', require('./seller'));
 router.get('/cart', Controller.showCartPage);
 router.post('/purchase', Controller.purchase)
+router.get('/purchaseHistory', Controller.showPurchaseHistory);
 
 router.get('/register', UserController.showRegisterUser);
 router.post('/register', UserController.postRegisterUser);

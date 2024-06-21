@@ -1,4 +1,4 @@
-const { Product, Category, PurchaseHistory } = require('../models');
+const { Product, Category, PurchaseHistory, User, UserProfile } = require('../models');
 const { formatPrice } = require('../helpers');
 
 class Controller {
@@ -18,17 +18,16 @@ class Controller {
     }
     static async addToCart(req, res) {
         try {
-            const { cart } = req.session;
-            const { id, purchasedQty } = req.body;
+            let { id, purchasedQty } = req.body;
             if ( purchasedQty > 0 ) {
-                if (!cart) {
-                    cart = [];
+                if (!req.session.cart) {
+                    req.session.cart = [];
                 }
-                let perItemCart = cart.find(el => el.id === +id);
+                let perItemCart = req.session.cart.find(el => el.id === +id);
                 if (perItemCart) {
                     perItemCart.purchasedQty = (+purchasedQty) + (perItemCart.purchasedQty);
                 } else {
-                    cart.push({ id: +id, purchasedQty: +purchasedQty });
+                    req.session.cart.push({ id: +id, purchasedQty: +purchasedQty });
                 }
             } else {
                 throw new Error('quantity need to be more than 0.');
@@ -63,7 +62,7 @@ class Controller {
     }
     static async purchase(req, res) {
         try {
-            const { userId, cart } = req.session;
+            const { userId } = req.session;
             const { id, purchasedQty } = req.body;
 
             if (!userId) {
@@ -71,7 +70,7 @@ class Controller {
                 err.name = 'ValidateLogin'
                 throw err;
             }
-            if (!cart) {
+            if (!req.session.cart) {
                 let err = new Error('Please add item to your cart.');
                 err.name = 'ValidatePurchase'
                 throw err;
@@ -84,16 +83,18 @@ class Controller {
                     let productLength = id.length;
                     
                     for (let i = 0; i < productLength; i++) {
+                        console.log(id[i], userId, purchasedQty[i], purchaseHistoryNo);
                         await PurchaseHistory.create({ productId: id[i], userId: userId, quantity: purchasedQty[i], purchaseHistoryNo });
                     }
                 } else {
+                    console.log(id, userId, purchasedQty, purchaseHistoryNo);
                     await PurchaseHistory.create({ productId: id, userId: userId, quantity: purchasedQty, purchaseHistoryNo });
                 }
-                cart = [];
+                req.session.cart = [];
             }
             res.redirect('/');
         } catch (error) {
-            // console.log(error);
+            console.log(error);
             if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
                 res.redirect(`/cart?error=${error.message}`);
             } else {
@@ -186,6 +187,18 @@ class Controller {
             } else {
                 res.send(error.message);
             }
+        }
+    }
+    static async showPurchaseHistory(req, res) {
+        try {
+            const { userId } = req.session;
+            let options = {};
+            // options.where = { id: userId }
+            options.include = UserProfile
+            let purchaseHistory = await User.findAll(options);
+            res.send(purchaseHistory);
+        } catch (error) {
+            res.send(error.message);
         }
     }
 }
