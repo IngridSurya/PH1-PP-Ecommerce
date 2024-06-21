@@ -44,7 +44,7 @@
     <div class="d-flex flex-row flex-wrap">
     <% products.forEach(el => { %>
         <div class="card" style="width: 18rem; min-width: 300px;">
-            <img src="<%= el.imgUrl %>" class="card-img-top" alt="<%= el.name %>">
+            <img src="<%= el.imgUrl %>" class="card-img-top" alt="<%= el.name %>" style="width: 75px; height: 75px;">
             <div class="card-body">
             <h5 class="card-title"><%= el.name %></h5>
             <h5 class="card-title"><%= el.Category.name %></h5>
