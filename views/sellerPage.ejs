@@ -3,9 +3,11 @@
 
     <!-- navbar -->
     <%- include('_navbar') %>
-
-    <a href="/seller/add" class="btn btn-outline-secondary">Add New Product</a>
-
+    
+    <% if (!products) { %>
+        <div>You don't have any Product! </div>
+    <% } %>
+    
     <!-- card -->
     <div class="d-flex flex-row flex-wrap">
         <% products.forEach(el => { %>
@@ -23,10 +25,14 @@
                     <a href="/seller/edit/<%= el.id %>" class="btn btn-success">Edit</a>
                     <a href="/seller/delete/<%= el.id %>" class="btn btn-danger">Delete</a>
                 </form>
-                </div>
             </div>
+        </div>
         <% }) %>
     </div>
+    <div style="text-align: center;">
+        <a href="/seller/add" class="btn btn-outline-secondary">Add New Product</a>
+    </div>
+        
     
     <!-- footer -->
     <%- include('_footer') %>

@@ -7,27 +7,30 @@
     <% if (error) { %>
         <p class="text-danger"><%= error %></p>
     <% } %>
-
-    <form action="/seller/add" method="post">
-        <label for="name">Product Name:</label>
-        <input type="text" class="form-control" id="name" name="name">
-        <label for="description">Description:</label>
-        <input type="text" class="form-control" id="description" name="description">
-        <label for="price">Price:</label>
-        <input type="text" class="form-control" id="price" name="price">
-        <label for="stock">Stock:</label>
-        <input type="text" class="form-control" id="stock" name="stock">
-        <label for="categoryId">Category:</label>
-        <select name="categoryId" id="categoryId" class="form-select">
-            <option selected disabled>Please choose category...</option>
-            <% categories.forEach(el => { %>
-            <option value="<%= el.id %>"><%= el.name %></option>
-            <% }) %>
-        </select>
-        <label for="imgUrl">ImgUrl:</label>
-        <input type="text" class="form-control" id="imgUrl" name="imgUrl">
-        <button class="btn btn-outline-secondary">Submit</button>
-    </form>
+    <div class="container" style="padding: 75px;">
+        <form action="/seller/add" method="post">
+            <label for="name">Product Name:</label>
+            <input type="text" class="form-control" id="name" name="name">
+            <label for="description">Description:</label>
+            <input type="text" class="form-control" id="description" name="description">
+            <label for="price">Price:</label>
+            <input type="text" class="form-control" id="price" name="price">
+            <label for="stock">Stock:</label>
+            <input type="text" class="form-control" id="stock" name="stock">
+            <label for="categoryId">Category:</label>
+            <select name="categoryId" id="categoryId" class="form-select">
+                <option selected disabled>Please choose category...</option>
+                <% categories.forEach(el => { %>
+                <option value="<%= el.id %>"><%= el.name %></option>
+                <% }) %>
+            </select>
+            <label for="imgUrl">ImgUrl:</label>
+            <input type="text" class="form-control" id="imgUrl" name="imgUrl">
+            <div style="text-align: center;margin-top: 10px;">
+                <button class="btn btn-outline-secondary" class="btn btn-primary">Submit</button>
+            </div>
+        </form>
+    </div>
     
     <!-- footer -->
     <%- include('_footer') %>
