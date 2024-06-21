@@ -1,0 +1,30 @@
+    <!-- header -->
+    <%- include('_header') %>
+
+    <!-- navbar -->
+    <%- include('_navbar') %>
+
+    <a href="/" class="btn btn-outline-primary">Back to Home Page</a>
+    <% if (userPurchaseHistory) { %>
+    <div class="d-flex flex-row flex-wrap">
+        <div class="d-flex flex-fill">
+            <% userPurchaseHistory.PurchaseHistories.forEach((el, index) => { %>
+            <div class="card" style="width: 18rem; min-width: 300px;">
+                <img src="<%= el.Product.imgUrl %>" class="card-img-top" alt="<%= el.Product.name %>">
+                <div class="card-body">
+                    <input type="hidden" name="id" value="<%= el.Product.id %>">
+                    <h5 class="card-title"><%= el.Product.name %></h5>
+                    <h5 class="card-title"><%= el.Product.Category.name %></h5>
+                    <p class="card-text"><%= el.Product.description %></p>
+                    <p class="card-text">Price: <%= formatPrice(el.Product.price) %></p>
+                    <p class="card-text">Stock: <%= el.Product.stock %></p>
+                    <p class="card-text" style="margin: 30px;">Total price: <%= formatPrice(el.Product.totalPrice(el.quantity)) %></p>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+    </div>
+    <% } %>
+    
+    <!-- footer -->
+    <%- include('_footer') %>
