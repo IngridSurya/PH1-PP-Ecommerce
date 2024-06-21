@@ -67,6 +67,11 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     sequelize,
     modelName: 'PurchaseHistory',
+    hooks: {
+      async beforeCreate(instance, option) {
+        await sequelize.models.Product.decrement({ stock: instance.quantity }, { where:{ id: instance.productId }})
+      }
+    }
   });
   return PurchaseHistory;
 };

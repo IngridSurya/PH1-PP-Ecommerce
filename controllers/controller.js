@@ -5,11 +5,11 @@ class Controller {
     static async showHomePage(req, res) {
         try {
             let session = req.session;
-            const { categoryId, name } = req.query;
+            const { categoryId, name, error } = req.query;
             let categories = await Category.findAll();
             let products = await Product.getDetails(categoryId, name);
             let filteredByCategory = await categories.find(el => el.id === +categoryId)
-            res.render('homePage', { title: 'Home Page', categories, products, filteredByCategory, formatPrice, session });
+            res.render('homePage', { title: 'Home Page', categories, products, filteredByCategory, formatPrice, session, error });
 
         } catch (error) {
             // console.log(error);
@@ -19,6 +19,14 @@ class Controller {
     static async addToCart(req, res) {
         try {
             let { id, purchasedQty } = req.body;
+
+            let product = await Product.findByPk(id);
+            if (purchasedQty > product.stock) {
+                let err = new Error('Stock is not enough, please re-input quantity.');
+                err.name = 'ValidateUser';
+                throw err;
+            }
+
             if ( purchasedQty > 0 ) {
                 if (!req.session.cart) {
                     req.session.cart = [];
@@ -35,7 +43,11 @@ class Controller {
             res.redirect('/');
         } catch (error) {
             // console.log(error);
-            res.send(error.message);
+            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase' || error.name === 'ValidateUser' ) {
+                res.redirect(`/?error=${error.message}`);
+            } else {
+                res.send(error.message);
+            }
         }
     }
     static async showCartPage(req, res) {
@@ -83,10 +95,24 @@ class Controller {
                     let productLength = id.length;
                     
                     for (let i = 0; i < productLength; i++) {
-                        console.log(id[i], userId, purchasedQty[i], purchaseHistoryNo);
+
+                        let product = await Product.findByPk(id[i]);
+                        if (purchasedQty[i] > product.stock) {
+                            let err = new Error('Stock is not enough, please re-input quantity.');
+                            err.name = 'ValidateUser';
+                            throw err;
+                        }
                         await PurchaseHistory.create({ productId: id[i], userId: userId, quantity: purchasedQty[i], purchaseHistoryNo });
                     }
                 } else {
+
+                    let product = await Product.findByPk(id);
+                    if (purchasedQty > product.stock) {
+                        let err = new Error('Stock is not enough, please re-input quantity.');
+                        err.name = 'ValidateUser';
+                        throw err;
+                    }
+
                     console.log(id, userId, purchasedQty, purchaseHistoryNo);
                     await PurchaseHistory.create({ productId: id, userId: userId, quantity: purchasedQty, purchaseHistoryNo });
                 }
@@ -94,8 +120,8 @@ class Controller {
             }
             res.redirect('/');
         } catch (error) {
-            console.log(error);
-            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
+            // console.log(error);
+            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase' || error.name === 'ValidateUser' ) {
                 res.redirect(`/cart?error=${error.message}`);
             } else {
                 res.send(error.message);
@@ -168,7 +194,7 @@ class Controller {
             res.redirect('/seller');
         } catch (error) {
             if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
-                res.redirect(`/seller/add?error=${error.message}`);
+                res.redirect(`/seller/edit/${id}?error=${error.message}`);
             } else {
                 res.send(error.message);
             }
@@ -177,16 +203,11 @@ class Controller {
     static async deleteProduct(req, res) {
         try {
             const { id } = req.params;
-            const { name, description, price, stock, categoryId, imgUrl } = req.body;
             // const { userId } = req.session;
             await Product.destroy({ where: { id } });
             res.redirect('/seller');
         } catch (error) {
-            if (error.name === 'ValidateLogin' || error.name === 'ValidatePurchase') {
-                res.redirect(`/seller/add?error=${error.message}`);
-            } else {
-                res.send(error.message);
-            }
+            res.send(error.message);
         }
     }
     static async showPurchaseHistory(req, res) {

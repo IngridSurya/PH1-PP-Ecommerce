@@ -17,7 +17,7 @@
                     <h5 class="card-title"><%= el.Product.Category.name %></h5>
                     <p class="card-text"><%= el.Product.description %></p>
                     <p class="card-text">Price: <%= formatPrice(el.Product.price) %></p>
-                    <p class="card-text">Stock: <%= el.Product.stock %></p>
+                    <p class="card-text">Purchase Quantity: <%= el.quantity %></p>
                     <p class="card-text" style="margin: 30px;">Total price: <%= formatPrice(el.Product.totalPrice(el.quantity)) %></p>
                 </div>
             </div>

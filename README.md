@@ -8,7 +8,7 @@
 5. Input email address
 6. Input role user (radio button seller / buyer)
 7. Button cancel
-8. Feature send email notification
+8. ~~Feature send email notification~~
 
 ## Login Page : (Route#2)
 1. Input username
