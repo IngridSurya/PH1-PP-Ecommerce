@@ -4,8 +4,12 @@
     <!-- navbar -->
     <%- include('_navbar') %>
     
-    <% if (!products) { %>
-        <div>You don't have any Product! </div>
+    <% if (!products || products.length === 0) { %>
+        <div style="text-align: center;">
+            <h4>
+                You don't have any Product!
+            </h4>
+        </div>
     <% } %>
     
     <!-- card -->

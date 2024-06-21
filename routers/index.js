@@ -5,7 +5,7 @@ const UserController = require("../controllers/UserController")
 const isLoggedIn = require("../middlewares");
 
 router.get('/', Controller.showHomePage);
-router.post('/', Controller.addToCart);
+router.post('/', isLoggedIn, Controller.addToCart);
 
 router.use('/seller', require('./seller'));
 router.get('/cart', Controller.showCartPage);
