@@ -191,12 +191,23 @@ class Controller {
     }
     static async showPurchaseHistory(req, res) {
         try {
+            let session = req.session;
             const { userId } = req.session;
             let options = {};
             // options.where = { id: userId }
-            options.include = UserProfile
-            let purchaseHistory = await User.findAll(options);
-            res.send(purchaseHistory);
+            options.include = [
+                { model: UserProfile },
+                { 
+                    model: PurchaseHistory,
+                    include: {
+                        model: Product,
+                        include: Category
+                    }
+                }
+            ]
+            let userPurchaseHistory = await User.findByPk(userId, options);
+            // res.send(userPurchaseHistory);
+            res.render('purchaseHistoryPage', { title: 'Home Page', formatPrice, session, userPurchaseHistory });
         } catch (error) {
             res.send(error.message);
         }
